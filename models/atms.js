@@ -1,18 +1,18 @@
 exports.calculateOrder = (data) =>
-    data.sort(compareRequest).map(mapRequest).filter(filterRequest);
+    data.sort(s).map(m).filter(f);
 
-const compareRequest = (a, b) => {
+const s = (a, b) => {
     return a.region !== b.region
         ? a.region - b.region
         : order[a.requestType] - order[b.requestType];
 };
 
-const mapRequest = (el) => {
-    return { region: el.region, atmId: el.atmId };
+const m = (e) => {
+    return { region: e.region, atmId: e.atmId };
 };
 
-const filterRequest = (val, ind, arr) =>
-    arr.findIndex((el) => el.region === val.region && el.atmId === val.atmId) === ind;
+const f = (v, i, a) =>
+    a.findIndex((e) => e.region === v.region && e.atmId === v.atmId) === i;
 
 const order = {
     FAILURE_RESTART: 0,
